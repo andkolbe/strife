@@ -28,7 +28,9 @@ const botName = 'Strife Bot';
 
 // Run when a client connects
 io.on('connection', socket => {
+
     socket.on('joinRoom', ({ username, room }) => {
+        console.log('Why')
         const user = userJoin(socket.id, username, room)
 
         socket.join(user.room); // use join to subscribe the user to a given room. Here it is user.room, room is provided from the client

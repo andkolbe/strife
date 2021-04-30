@@ -5,6 +5,7 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name')
 const userList = document.getElementById('users')
 
+const btnCreate = document.getElementById('btnCreate');
 
 // Get username and room from url
 const { username, room } = Qs.parse(location.search, {
@@ -16,6 +17,7 @@ const { username, room } = Qs.parse(location.search, {
 const socket = io('http://localhost:3000', {
     transports: ['websocket']
 });
+
 
 // Join Chatroom
 // username and room are pulled off of the query parameters and sent to the server
@@ -35,8 +37,6 @@ socket.on('message', message => {
     // Scroll down every time we get a new message
     chatMessages.scrollTop = chatMessages.scrollHeight // scrollTop and Height are html elements
 })
-
-
 
 
 // Create an event listener for the Submit Message Form
@@ -76,3 +76,27 @@ function outputUsers(users) {
         ${users.map(user => `<li>${user.username}</li>`).join('')}
     `;
 }
+
+
+// Console Log Shenanigans
+const textStyle = [
+    'background: linear-gradient(#26E000, #19272f)',
+    'border: 1px solid #1A8904',
+    'color: white',
+    'padding: 1px 5px',
+    'line-height: 40px',
+    'font-weight: bold',
+    'font-size: large',
+    'font-family: Verdana, sans-serif'
+  ].join(';');
+  
+  const imageStyle = [
+    'background-image: url("https://thumbs.gfycat.com/PastelShrillArrowcrab-size_restricted.gif")',
+    'background-size: cover',
+    'padding: 50px 100px',
+  ].join(';');
+  
+  console.log('%cLike what you see?', textStyle);
+  console.log('%cI am looking to get hired', textStyle);
+  console.log('%ccontact me at kolbe1129@gmail.com', textStyle);
+  console.log('%c ', imageStyle)

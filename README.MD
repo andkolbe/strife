@@ -18,7 +18,7 @@ Passing events between nodes
 The Redis Adapter
 If you want to broadcast events to all clients (or to the clients in a certain room) you'll need some way of passing messages between processes or computers
 The interface in charge of routing messages is what we call the Adapter. 
-By running Socket.IO with the socket.io-redis adapter you can run multiple Socket.IO instances in differentprocesses or servers that can all broadcast and emit
+By running Socket.IO with the socket.io-redis adapter you can run multiple Socket.IO instances in different processes or servers that can all broadcast and emit
 events to and from each other 
 
 
@@ -44,7 +44,10 @@ The room itself is persisted on Redis so when you ask for users, you don't actua
 No data is stored in Redis itself. Redis server only acts as a pub/sub server. 
 Each emitted message is published to redis which is broadcast to other socket servers as well.
 
-
+The Redis channel is the publisher and the servers are the subscribers
+If any of the clients publish a message to the Redis publisher, all of the subscribers (servers) will see it
+EX: A client sends a message of 'Hi!' which goes to the server it is connected to who then publishes it to the Redis channel. All of the servers that are 
+subscribed to the Redis channel will see the Hi messages and send it back to all of the clients that are connected to them
 
 
 Redis PUB/SUB
