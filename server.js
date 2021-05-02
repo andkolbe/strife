@@ -30,7 +30,6 @@ const botName = 'Strife Bot';
 io.on('connection', socket => {
 
     socket.on('joinRoom', ({ username, room }) => {
-        console.log('Why')
         const user = userJoin(socket.id, username, room)
 
         socket.join(user.room); // use join to subscribe the user to a given room. Here it is user.room, room is provided from the client
@@ -76,9 +75,11 @@ io.on('connection', socket => {
     })
 })
 
-const PORT = process.env.PORT || 3000
-
-server.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`)).on('error', err => {
+    console.log(err);
+    process.exit(1);
+});
 
 
 
