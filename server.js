@@ -8,10 +8,10 @@ const { getCurrentUser, getRoomUsers, userJoin, userLeave } = require('./utils/u
 const config = require('./config');
 
 
-// // Redis Adapter
-// const redisAdapter = require('socket.io-redis');
-// const redisURL = config.redis.url
-// io.adapter(redisAdapter(redisURL));
+// Redis Adapter
+const redisAdapter = require('socket.io-redis');
+const redisURL = config.redis.url
+io.adapter(redisAdapter(redisURL));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
