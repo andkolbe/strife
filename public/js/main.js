@@ -14,6 +14,10 @@ const { username, room } = Qs.parse(location.search, {
 
 // only use the websocket feature and not HTTP long polling fallback
 // allows us to not have to implement Sticky Sessions when adding the Redis Adapter
+// const socket = io('https://strife-websockets.herokuapp.com/', {
+//     transports: ['websocket']
+// });
+
 const socket = io('http://localhost:3000', {
     transports: ['websocket']
 });
@@ -76,6 +80,15 @@ function outputUsers(users) {
         ${users.map(user => `<li>${user.username}</li>`).join('')}
     `;
 }
+
+//Prompt the user before leave chat room
+document.getElementById('leave-btn').addEventListener('click', () => {
+    const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
+    if (leaveRoom) {
+      window.location = '../index.html';
+    } else {
+    }
+  });
 
 
 // Console Log Shenanigans

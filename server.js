@@ -5,12 +5,12 @@ const server = require('http').createServer(app) // pull the http server out fro
 const io = require('socket.io')(server);
 const formatMessage = require('./utils/messages');
 const { getCurrentUser, getRoomUsers, userJoin, userLeave } = require('./utils/users');
-const config = require('../config');
+// const config = require('../config');
 
 
 // Redis Adapter
 const redisAdapter = require('socket.io-redis');
-io.adapter(redisAdapter(config.redis.url));
+io.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -78,10 +78,8 @@ io.on('connection', socket => {
 })
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`)).on('error', err => {
-    console.log(err);
-    process.exit(1);
-});
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
 
