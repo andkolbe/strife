@@ -81,7 +81,7 @@ function outputUsers(users) {
     `;
 }
 
-//Prompt the user before leave chat room
+// Prompt the user before leave chat room
 document.getElementById('leave-btn').addEventListener('click', () => {
     const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
     if (leaveRoom) {
